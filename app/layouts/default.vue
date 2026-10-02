@@ -1,12 +1,11 @@
-<!-- app/layouts/default.vue -->
 <template>
   <div class="flex min-h-screen flex-col">
     <header
-      class="flex w-full items-center justify-between border-b border-brutal-surface px-4 py-8 md:px-8"
+      class="relative flex w-full items-center justify-between border-b border-brutal-surface px-4 py-8 md:px-8"
     >
-      <div class="flex items-end gap-3">
+      <a href="/" class="group flex cursor-pointer items-end gap-3">
         <span
-          class="font-heading text-xl uppercase tracking-widest text-brutal-text md:text-2xl"
+          class="font-heading text-xl uppercase tracking-widest text-brutal-text transition-colors group-hover:text-brutal-accent md:text-2xl"
           >Pindaro</span
         >
         <div class="-mb-2 flex h-10 w-10 items-center justify-center">
@@ -18,16 +17,12 @@
           />
         </div>
         <span
-          class="font-heading text-xl uppercase tracking-widest text-brutal-text md:text-2xl"
+          class="font-heading text-xl uppercase tracking-widest text-brutal-text transition-colors group-hover:text-brutal-accent md:text-2xl"
           >Heras</span
         >
-      </div>
+      </a>
+
       <div class="flex items-center gap-6">
-        <button
-          class="cursor-pointer font-sans text-sm uppercase tracking-widest transition-colors duration-200 hover:text-brutal-accent"
-        >
-          [ ES / EN ]
-        </button>
         <button
           class="cursor-pointer transition-colors duration-200 hover:text-brutal-accent"
         >
@@ -37,18 +32,73 @@
             />
           </svg>
         </button>
-        <button class="group ml-2 flex cursor-pointer flex-col gap-1.5">
+
+        <button
+          class="group ml-2 flex cursor-pointer flex-col gap-1.5 focus:outline-none"
+          aria-label="Abrir menú"
+          @click="toggleMenu"
+        >
           <span
-            class="h-[2px] w-8 bg-brutal-text transition-colors group-hover:bg-brutal-accent"
+            :class="isMenuOpen ? 'translate-y-2 rotate-45' : ''"
+            class="h-[2px] w-8 bg-brutal-text transition-all duration-300 group-hover:bg-brutal-accent"
           />
           <span
-            class="h-[2px] w-8 bg-brutal-text transition-colors group-hover:bg-brutal-accent"
+            :class="isMenuOpen ? 'opacity-0' : ''"
+            class="h-[2px] w-8 bg-brutal-text transition-all duration-300 group-hover:bg-brutal-accent"
           />
           <span
-            class="h-[2px] w-8 bg-brutal-text transition-colors group-hover:bg-brutal-accent"
+            :class="isMenuOpen ? '-translate-y-2 -rotate-45' : ''"
+            class="h-[2px] w-8 bg-brutal-text transition-all duration-300 group-hover:bg-brutal-accent"
           />
         </button>
       </div>
+
+      <transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="opacity-0 -translate-y-2"
+        enter-to-class="opacity-100 translate-y-0"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="opacity-100 translate-y-0"
+        leave-to-class="opacity-0 -translate-y-2"
+      >
+        <div
+          v-if="isMenuOpen"
+          class="absolute left-0 top-full z-50 w-full border-b border-brutal-surface bg-black p-6 shadow-2xl md:px-8"
+        >
+          <div class="mx-auto flex max-w-7xl flex-col gap-4 font-mono text-sm">
+            <span class="text-brutal-accent">> system_nav --open</span>
+            <div
+              class="my-2 flex flex-col gap-3 border-l border-brutal-surface pl-4"
+            >
+              <a
+                href="/"
+                class="py-1 text-gray-400 transition-colors hover:text-brutal-accent"
+                @click="isMenuOpen = false"
+              >
+                // 01. Inicio
+              </a>
+              <a
+                href="/sobre-mi"
+                class="py-1 text-gray-400 transition-colors hover:text-brutal-accent"
+                @click="isMenuOpen = false"
+              >
+                // 02. Sobre Mí
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                class="py-1 text-gray-400 transition-colors hover:text-brutal-accent"
+                @click="isMenuOpen = false"
+              >
+                // 03. GitHub
+              </a>
+            </div>
+            <span class="text-xs text-gray-600"
+              >Presiona el sándwich de nuevo para cerrar.</span
+            >
+          </div>
+        </div>
+      </transition>
     </header>
 
     <main class="flex-grow p-4 md:p-8">
@@ -132,7 +182,7 @@
               Red de Nodos
             </h3>
             <a
-              href="#"
+              href="https://github.com/EROSHS22"
               class="text-gray-500 transition-all duration-200 hover:translate-x-1 hover:text-brutal-text"
               >> GitHub</a
             >
@@ -140,6 +190,11 @@
               href="#"
               class="text-gray-500 transition-all duration-200 hover:translate-x-1 hover:text-brutal-text"
               >> LinkedIn</a
+            >
+            <a
+              href="/sobre-mi"
+              class="text-gray-500 transition-all duration-200 hover:translate-x-1 hover:text-brutal-text"
+              >> Sobre Mi</a
             >
           </div>
 
@@ -175,6 +230,11 @@ const phrases = [
 ]
 
 const currentPhrase = ref('Iniciando secuencia de arranque...')
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
 
 onMounted(() => {
   const randomIndex = Math.floor(Math.random() * phrases.length)

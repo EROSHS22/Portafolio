@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "projects": "Repositorio",
+    "nodes": "Red de Nodos",
+    "status": "Status"
+  },
+  "hero": {
+    "line1": "Ingeniero",
+    "line2": "Full Stack Cloud",
+    "terminalStart": "> SISTEMA OPERATIVO INICIADO.",
+    "terminalRender": "> RENDERIZANDO ARQUITECTURA BRUTALISTA."
+  },
+  "footer": {
+    "connect": "> Ejecutar_Conexión",
+    "placeholder": "ingresa_tu_correodomain",
+    "button": "Enter",
+    "phrases": [
+      "Optimizando sistemas. Automatizando procesos.",
+      "Desarrollo Frontend. Precisión de Backend.",
+      "Escribiendo código limpio desde Michoacán.",
+      "La calidad del software no es negociable.",
+      "Resolviendo problemas complejos con soluciones simples."
+    ],
+    "nodes": "Red de Nodos",
+    "status": "Status",
+    "operational": "Operativo"
+  },
+  "a11y": {
+    "logoAlt": "Pixel Art Logo",
+    "switchLocale": "Cambiar idioma",
+    "theme": "Cambiar tema"
+  }
+}
