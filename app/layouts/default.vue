@@ -85,7 +85,7 @@
                 // 02. Sobre Mí
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/EROSHS22"
                 target="_blank"
                 class="py-1 text-gray-400 transition-colors hover:text-brutal-accent"
                 @click="isMenuOpen = false"

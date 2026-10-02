@@ -27,7 +27,7 @@ export const projects: Project[] = [
       width: 1365,
       height: 866
     },
-    url: '#'
+    url: 'https://verificacionlicencia.sfa.michoacan.gob.mx'
   },
   {
     id: 'interfaz-notaria',
@@ -41,6 +41,6 @@ export const projects: Project[] = [
       width: 1850,
       height: 891
     },
-    url: '#'
+    url: 'https://www.ajysnotary.com'
   }
 ]
