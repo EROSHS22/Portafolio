@@ -4,6 +4,102 @@
 
 @layer base {
   body {
-    @apply bg-brutal-bg text-brutal-text font-sans antialiased selection:bg-brutal-accent selection:text-brutal-bg;
+    @apply bg-brutal-bg font-sans text-brutal-text antialiased selection:bg-brutal-accent selection:text-brutal-bg;
+  }
+}
+
+@layer components {
+  /* --- Seccion de proyectos ------------------------------------------- */
+
+  /* El lado de la imagen NO esta en los datos: lo deriva la posicion en la
+     lista (flip = index % 2) y se marca con .project-card--flip. El DOM nunca
+     cambia de orden (texto -> imagen), solo el `order` visual.
+
+     Movil (una columna): imagen arriba y texto abajo en todos los proyectos.
+     Escritorio (>=900px): texto a la izquierda, salvo las filas --flip, donde
+     la imagen va a la izquierda. */
+  .project-card__body {
+    order: 2;
+  }
+
+  .project-card__media {
+    position: relative;
+    order: 1;
+    aspect-ratio: 3 / 2;
+  }
+
+  @media (min-width: 900px) {
+    .project-card__body {
+      order: 1;
+    }
+
+    .project-card__media {
+      order: 2;
+    }
+
+    .project-card--flip .project-card__body {
+      order: 2;
+    }
+
+    .project-card--flip .project-card__media {
+      order: 1;
+    }
+  }
+
+  .project-card__media img {
+    display: block;
+    transition: filter 350ms ease;
+  }
+
+  /* Capa de oscurecido. `opacity: 0` por defecto: si quedara en 0.7, en movil
+     (sin hover) las capturas se verian permanentemente oscuras. */
+  .project-card__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity 350ms ease;
+  }
+
+  /* Solo donde existe hover se oscurece; tactil se muestra a color. */
+  @media (hover: hover) {
+    .project-card__media img {
+      filter: grayscale(1);
+    }
+
+    .project-card__media::after {
+      opacity: 0.7;
+    }
+
+    .project-card:hover .project-card__media img,
+    .project-card:focus-within .project-card__media img {
+      filter: grayscale(0);
+    }
+
+    .project-card:hover .project-card__media::after,
+    .project-card:focus-within .project-card__media::after {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card__media img,
+    .project-card__media::after {
+      transition: none;
+    }
+  }
+
+  /* Los corchetes van por CSS para que el lector de pantalla lea solo
+     "Laravel" y no "corchete Laravel corchete". */
+  .project-card__tag::before {
+    content: '[';
+    margin-inline: 0.3em;
+  }
+
+  .project-card__tag::after {
+    content: ']';
+    margin-inline: 0.3em;
   }
 }

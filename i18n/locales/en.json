@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "projects": "Repository",
+    "nodes": "Node Network",
+    "status": "Status"
+  },
+  "hero": {
+    "line1": "Full Stack",
+    "line2": "Cloud Engineer",
+    "terminalStart": "> OPERATING SYSTEM INITIALIZED.",
+    "terminalRender": "> RENDERING BRUTALIST ARCHITECTURE."
+  },
+  "footer": {
+    "connect": "> Execute_Connection",
+    "placeholder": "enter_your_emaildomain",
+    "button": "Enter",
+    "phrases": [
+      "Optimizing systems. Automating processes.",
+      "Frontend development. Backend precision.",
+      "Writing clean code from Michoacán.",
+      "Software quality is not negotiable.",
+      "Solving complex problems with simple solutions."
+    ],
+    "nodes": "Node Network",
+    "status": "Status",
+    "operational": "Operational"
+  },
+  "a11y": {
+    "logoAlt": "Pixel Art Logo",
+    "switchLocale": "Switch language",
+    "theme": "Toggle theme"
+  }
+}
